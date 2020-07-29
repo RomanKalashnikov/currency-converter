@@ -1,0 +1,14 @@
+spring.datasource.url: jdbc:postgresql://localhost/postgres
+spring.datasource.driverClassName: org.postgresql.Driver
+spring.datasource.username: postgres
+spring.datasource.password: 123
+
+
+
+spring:
+  jpa:
+    generate-ddl: true
+  mustache:
+    expose-request-attributes: true
+  thymeleaf:
+    enabled: false
