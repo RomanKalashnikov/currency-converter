@@ -42,9 +42,11 @@ public class XmlTolist {
                         currency.setValuteID(book.getAttributes().item(0).getNodeValue());
                     }
                     if (root.getAttributes().item(0).getNodeName().equalsIgnoreCase("Date")) {
+
                         String date = root.getAttributes().item(0).getNodeValue();
                         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
                         LocalDate localDate = LocalDate.parse(date, format);
+
                         currency.setDate(localDate);
                     }
                     // Если нода не текст, то это один из параметров книги - печатаем
