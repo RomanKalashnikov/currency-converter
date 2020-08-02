@@ -1,0 +1,27 @@
+<html lang="en">
+<body>
+
+<div> Список пользователей</div>
+
+    <form method="post" action="/history/filter">
+
+        <input required type="date" name="startSearch"/>
+        <input required type="date" name="endSearch"/>
+
+        <button type="submit">Find</button>
+    </form>
+
+<div> Список пользователей</div>
+
+{{#search}}
+    <div>
+        <b>sourceCurrency: {{sourceCurrency}}|</b>
+        <b>targetCurrency: {{targetCurrency}}|</b>
+        <b>sourceAmount: {{sourceAmount}}|</b>
+        <b>targetAmount: {{targetAmount}}|</b>
+        <b>date: {{date}}|</b>
+    </div>
+{{/search}}
+
+</body>
+</html>
