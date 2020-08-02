@@ -31,6 +31,7 @@ public class Currency {
     private String name;
 
     private Double value;
+
     @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate date;
 
