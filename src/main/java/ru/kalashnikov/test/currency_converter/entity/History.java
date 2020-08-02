@@ -1,6 +1,8 @@
 package ru.kalashnikov.test.currency_converter.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,9 +23,8 @@ public class History {
 
     private String targetCurrency;
 
-    private Long sourceAmount;
-
-    private Long targetAmount;
+    private Double sourceAmount;
+    private Double targetAmount;
 
     private LocalDate date;
 

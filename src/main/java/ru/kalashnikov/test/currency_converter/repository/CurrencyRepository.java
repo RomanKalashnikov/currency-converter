@@ -6,5 +6,9 @@ import ru.kalashnikov.test.currency_converter.entity.Currency;
 
 @Repository
 public interface CurrencyRepository extends CrudRepository<Currency,Long> {
+    Currency findByValuteID(String id);
+
+    Currency findByName(String name);
+
 }
 

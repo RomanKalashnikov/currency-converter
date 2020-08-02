@@ -1,0 +1,38 @@
+<html lang="en">
+<body>
+<div>
+
+    <form method="post">
+        <input type="number" name="valueID" placeholder="Введите valueID"/>
+        <input type="number" name="numCode" placeholder="Введите numCode"/>
+        <input type="text" name="charCode" placeholder="Введите charCode"/>
+        <input type="number" name="nominal" placeholder="Введите nominal"/>
+        <input type="text" name="name" placeholder="Введите name"/>
+        <input type="text" name="value" placeholder="Введите value"/>
+        <button type="submit">"Add</button>
+    </form>
+</div>
+<div> Список пользователей</div>
+<form method="post" action="filter">
+    <input type="text" name="name">
+    <button type="submit">Find</button>
+</form>
+{{#currency}}
+    <div>
+        <td>id: {{valueID}}|</td>
+        <td>numCode:  {{numCode}} |</td>
+        <td>charCode:  {{charCode}}|</td>
+        <td>nominal: {{nominal}}|</td>
+        <td>name: {{name}}|</td>
+        <td>value: {{value}}|</td>
+    </div>
+{{/currency}}
+<p>Click <a href="/bets">here</a> to see a bets.</p>
+<p>Click <a href="/items">here</a> to see a items.</p>
+
+<form action="logout" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+
+</html>
