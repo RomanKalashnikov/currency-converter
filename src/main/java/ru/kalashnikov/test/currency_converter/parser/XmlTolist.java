@@ -14,18 +14,19 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 
 @Service
 @Slf4j
 public class XmlTolist {
 
-    public Map<Integer, Currency> creteDocument() throws ParserConfigurationException, IOException, SAXException {
+    public List<Currency> creteDocument() throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
         Document document = documentBuilder.parse("http://www.cbr.ru/scripts/XML_daily.asp");
         Node root = document.getDocumentElement();
-        Map<Integer, Currency> currencyMap = new TreeMap<>();
+        List<Currency> currencyMap = new ArrayList<>();
         NodeList books = root.getChildNodes();
 
         for (int i = 0; i < books.getLength(); i++) {
@@ -72,7 +73,7 @@ public class XmlTolist {
                         }
                     }
                 }
-                currencyMap.put(i, currency);
+                currencyMap.add(currency);
             }
         }
         return currencyMap;

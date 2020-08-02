@@ -4,7 +4,7 @@
 
     <form method="post">
         <p><label>
-            <select size="1" name="currencyFrom">
+            <select size="1" name="sourceCurrency">
                 <option selected disabled>Выбрите из какой валюты</option>
                 <option value="Австралийский доллар">Австралийский доллар</option>
                 <option value="Азербайджанский манат">Азербайджанский манат</option>
@@ -41,7 +41,7 @@
                 <option value="Японских иен">Японских иен</option>
             </select>
 
-            <select size="1" name="currencyTo">
+            <select size="1" name="targetCurrency">
                 <option selected disabled>Выбрите в какую валюту</option>
                 <option value="Австралийский доллар">Австралийский доллар</option>
                 <option value="Азербайджанский манат">Азербайджанский манат</option>
@@ -80,7 +80,7 @@
             </select>
         </label></p>
         <label>
-            <input type="number" name="amount" placeholder="Введите сумму  "/>
+            <input type="number" name="sourceAmount" placeholder="Введите сумму  "/>
             <output name="targetAmount">
                 {{#history}}
                 <div>
