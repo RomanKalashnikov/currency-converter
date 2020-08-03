@@ -1,27 +1,37 @@
 <html lang="en">
 <body>
 
-<div> Список пользователей</div>
+<div> История конвертаций</div>
 
-    <form method="post" action="/history/filter">
+<form method="post" action="/history/filter">
+    <div> Укажите желаемый диапазон дат для просмотра</div>
+    <input required type="date" name="startSearch"/>
+    <input required type="date" name="endSearch"/>
 
-        <input required type="date" name="startSearch"/>
-        <input required type="date" name="endSearch"/>
+    <button type="submit">Find</button>
+</form>
 
-        <button type="submit">Find</button>
-    </form>
 
-<div> Список пользователей</div>
+<table  border="2" cellpadding="5"  >
+    <caption>История</caption>
+    <tr>
+        <th> sourceCurrency</th>
+        <th>targetCurrency</th>
+        <th>sourceAmount</th>
+        <th>targetAmount</th>
+        <th width="40">date</th>
+    </tr>
+    {{#search}}
+        <tr>
+            <td>{{sourceCurrency}}</td>
+            <td>{{targetCurrency}}</td>
+            <td>{{sourceAmount}}</td>
+            <td>{{targetAmount}}</td>
+            <td>{{date}}</td>
+        </tr>
+    {{/search}}
+</table>
 
-{{#search}}
-    <div>
-        <b>sourceCurrency: {{sourceCurrency}}|</b>
-        <b>targetCurrency: {{targetCurrency}}|</b>
-        <b>sourceAmount: {{sourceAmount}}|</b>
-        <b>targetAmount: {{targetAmount}}|</b>
-        <b>date: {{date}}|</b>
-    </div>
-{{/search}}
 
 </body>
 </html>
