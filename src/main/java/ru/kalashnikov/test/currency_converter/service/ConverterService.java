@@ -1,19 +1,20 @@
 package ru.kalashnikov.test.currency_converter.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
-import org.xml.sax.SAXException;
+import ru.kalashnikov.test.currency_converter.dto.HistoryDto;
 import ru.kalashnikov.test.currency_converter.entity.Currency;
 import ru.kalashnikov.test.currency_converter.entity.History;
+import ru.kalashnikov.test.currency_converter.mapper.CurrencyMapper;
+import ru.kalashnikov.test.currency_converter.mapper.HistoryMapper;
 import ru.kalashnikov.test.currency_converter.parser.XmlToListParser;
 import ru.kalashnikov.test.currency_converter.repository.CurrencyRepository;
 import ru.kalashnikov.test.currency_converter.repository.HistoryRepository;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,6 +23,8 @@ public class ConverterService {
     private CurrencyRepository currencyRepository;
     private HistoryRepository historyRepository;
     private XmlToListParser xmlToListParser;
+   private CurrencyMapper currencyMapper = Mappers.getMapper(CurrencyMapper.class);
+    private HistoryMapper historyMapper = Mappers.getMapper(HistoryMapper.class);
 
 
     public ConverterService(CurrencyRepository currencyRepository, HistoryRepository historyRepository, XmlToListParser xmlToListParser) {
@@ -30,7 +33,10 @@ public class ConverterService {
         this.xmlToListParser = xmlToListParser;
     }
 
-    public History createConversion(History history) {
+
+
+    public History createConversion(HistoryDto historyDto) {
+        History history = historyMapper.toDomain(historyDto);
         Double calculateResults = calculate(history);
         return saveResultCalculationOnHistory(history, calculateResults);
     }
@@ -54,12 +60,7 @@ public class ConverterService {
     }
 
     private void updateCurrency() {
-        List<Currency> currencyList = new ArrayList<>();
-        try {
-            currencyList = xmlToListParser.getDocumentParseList();
-        } catch (ParserConfigurationException | IOException | SAXException e) {
-            log.warn("Невозможно обновить Валюты");
-        }
+        List<Currency> currencyList = xmlToListParser.getDocumentParseList();
 
         currencyList.forEach(currency -> {
             Currency byValuteID = currencyRepository.findByValuteID(currency.getValuteID());
