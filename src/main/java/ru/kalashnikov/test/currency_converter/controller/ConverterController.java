@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.kalashnikov.test.currency_converter.dto.HistoryDto;
 import ru.kalashnikov.test.currency_converter.entity.History;
 import ru.kalashnikov.test.currency_converter.service.ConverterService;
 
@@ -26,8 +27,8 @@ public class ConverterController {
     }
 
     @PostMapping()
-    public String calculate(History history, Map<String, Object> model) {
-        History conversion = converterService.createConversion(history);
+    public String calculate(HistoryDto historyDto, Map<String, Object> model) {
+        History conversion = converterService.createConversion(historyDto);
         model.put("convert", conversion);
 
 
