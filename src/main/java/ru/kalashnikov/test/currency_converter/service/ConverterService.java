@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 import ru.kalashnikov.test.currency_converter.entity.Currency;
 import ru.kalashnikov.test.currency_converter.entity.History;
-import ru.kalashnikov.test.currency_converter.parser.XmlTolist;
+import ru.kalashnikov.test.currency_converter.parser.XmlToListParser;
 import ru.kalashnikov.test.currency_converter.repository.CurrencyRepository;
 import ru.kalashnikov.test.currency_converter.repository.HistoryRepository;
 
@@ -21,13 +21,13 @@ import java.util.List;
 public class ConverterService {
     private CurrencyRepository currencyRepository;
     private HistoryRepository historyRepository;
-    private XmlTolist xmlTolist;
+    private XmlToListParser xmlToListParser;
 
 
-    public ConverterService(CurrencyRepository currencyRepository, HistoryRepository historyRepository, XmlTolist xmlTolist) {
+    public ConverterService(CurrencyRepository currencyRepository, HistoryRepository historyRepository, XmlToListParser xmlToListParser) {
         this.currencyRepository = currencyRepository;
         this.historyRepository = historyRepository;
-        this.xmlTolist = xmlTolist;
+        this.xmlToListParser = xmlToListParser;
     }
 
     public History createConversion(History history) {
@@ -56,7 +56,7 @@ public class ConverterService {
     private void updateCurrency() {
         List<Currency> currencyList = new ArrayList<>();
         try {
-            currencyList = xmlTolist.creteDocument();
+            currencyList = xmlToListParser.getDocumentParseList();
         } catch (ParserConfigurationException | IOException | SAXException e) {
             log.warn("Невозможно обновить Валюты");
         }
