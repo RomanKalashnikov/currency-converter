@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public interface HistoryRepository extends CrudRepository<History,Long> {
-//    List<History> findAllByDateAndDate(LocalDate startFindDate, LocalDate endFindDate);
     List<History> findByDateBetween(LocalDate startFindDate, LocalDate endFindDate);
 
 }
